@@ -1,0 +1,147 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[5].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[5].oneOf[9].use[5]!./src/components/ProfilePanel/index.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ProfilePanel_profilePanelContainer__4w_zF {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 20px 20px;
+}
+
+.ProfilePanel_chips__h_eEE {
+  margin-right: 8px;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[5].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[5].oneOf[9].use[5]!./src/components/PartnerPanel/index.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.PartnerPanel_partnerContainer__cyEMP {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 20px 20px;
+}
+
+.PartnerPanel_partnerItemContainer__SN0xt {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.PartnerPanel_partnerItemContainer__SN0xt .PartnerPanel_partnerItem__y4iFL {
+  width: 190px;
+  height: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px 16px;
+  box-sizing: content-box;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[5].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[5].oneOf[9].use[5]!./src/components/NeedsPanel/index.module.scss ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.NeedsPanel_needsContainer__E5sy3 {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  padding: 16px 16px;
+  border-radius: 8px;
+  gap: 8px;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_needsItem__56PCD {
+  height: 60px;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_needsItem__56PCD .NeedsPanel_needsItemText__Ad_4P {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_needsItem__56PCD .NeedsPanel_needsItemTitle__rHzFn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_needsItem__56PCD .NeedsPanel_needsItemTitle__rHzFn span {
+  display: block;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_green__PuXpT {
+  background-color: #6dca6d;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 5px green;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_red__tOLl4 {
+  background-color: red;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 5px red;
+}
+.NeedsPanel_needsContainer__E5sy3 .NeedsPanel_gray__3A9Sw {
+  background-color: gray;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 5px gray;
+}
+
+.NeedsPanel_needsItem__56PCD {
+  justify-content: space-between;
+}
+
+.NeedsPanel_expandedContent__j_0mb {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[5].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[5].oneOf[9].use[5]!./src/components/ReputationPanel/index.module.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.ReputationPanel_reputationContainer__IgCqE {
+  border: 1px solid #e0e0e0;
+  padding: 16px 16px;
+  border-radius: 8px;
+}
+.ReputationPanel_reputationContainer__IgCqE .ReputationPanel_reputationItem__o_qtV {
+  height: 60px;
+}
+.ReputationPanel_reputationContainer__IgCqE .ReputationPanel_reputationItem__o_qtV .ReputationPanel_reputationItemTitle__OM_7G {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ReputationPanel_modalContainer__DIyBQ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ReputationPanel_modalContainer__DIyBQ .ReputationPanel_contentContainer__1EAnH {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid #000;
+  padding: 16px 48px;
+  border-radius: 8px;
+  margin-top: 8px;
+}
+.ReputationPanel_modalContainer__DIyBQ .ReputationPanel_contentContainer__1EAnH .ReputationPanel_dialogButton__H1utd {
+  background-color: #000 !important;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[5].oneOf[9].use[3]!./node_modules/next/dist/build/webpack/loaders/resolve-url-loader/index.js??ruleSet[1].rules[5].oneOf[9].use[4]!./node_modules/next/dist/compiled/sass-loader/cjs.js??ruleSet[1].rules[5].oneOf[9].use[5]!./src/app/profile/index.module.scss ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+.profile_LeftContainer__cKOth {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
