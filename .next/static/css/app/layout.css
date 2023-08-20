@@ -14,6 +14,11 @@
 .CommonHeader_PostProjectButton__LHa0s {
   background-color: #000000 !important;
 }
+
+.CommonHeader_connectBtn__i0jko {
+  border: 1px solid #000;
+  border-radius: 4px;
+}
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[5].oneOf[2].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[5].oneOf[2].use[2]!./node_modules/next/font/google/target.css?{"path":"src/app/layout.tsx","import":"Inter","arguments":[{"subsets":["latin"]}],"variableName":"inter"} ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -615,6 +620,9 @@ video {
 .flex {
   display: flex;
 }
+.hidden {
+  display: none;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -629,6 +637,9 @@ video {
 }
 .justify-between {
   justify-content: space-between;
+}
+.gap-2 {
+  gap: 0.5rem;
 }
 .border {
   border-width: 1px;

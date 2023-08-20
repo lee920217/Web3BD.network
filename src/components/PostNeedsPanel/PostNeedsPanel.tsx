@@ -81,6 +81,8 @@ const PostNeedsPanel: React.FC = () => {
         } catch (error) {
             console.error('Error fetching data:', error);
         }
+
+        setMatchResult(true)
     }
 
 
