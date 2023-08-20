@@ -22,11 +22,10 @@ The next-generation organizational nexus.
 
 To provide project initiators with a platform where they can effectively showcase their projects to attract potential investors. Simultaneously, we aim to offer a relatively secure environment for investors to make investments and reap returns. By bridging the gap between project initiators and investors, we facilitate the establishment of a social network that fosters project development and collaboration.
 
-## Framework
- 
+## Technique Framework
 
-└---- Frontend // Web Front End 
 
+└---- Frontend //Web Frontend pages
 
 
 ![image](https://github.com/lee920217/DAOInfra-hackerhouse-2023/assets/11926244/c80ff37e-31ac-47a8-90a6-b4439212a7d9)
