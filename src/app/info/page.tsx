@@ -1,31 +1,23 @@
 "use client"
 
-import React, { useState } from 'react';
-import styles from './index.module.scss'
-import Typography from "@mui/material/Typography";
+import React from 'react';
+import Grid from '@mui/material/Grid';
 import ProfilePanel from "@/components/ProfilePanel/ProfilePanel";
-import partnersData from "@/data/partner";
 import Partnership from "@/components/PartnerPanel/PartnerPanel";
-import needs from "@/data/needs";
+import partnersData from '@/data/partner'
+import styles from './index.module.scss'
 import NeedsPanel from "@/components/NeedsPanel/NeedsPanel";
-
-const InfoPage: React.FC = () => {
-    const [selectedMenu, setSelectedMenu] = useState<string>('Partnership');
-
+import needs from "@/data/needs";
+import ReputationPanel from "@/components/ReputationPanel/ReputationPanel";
+import CatVideo from '../../assets/video/cat.mp4';
+import Reputation from "@/data/reputation";
+const ProfilePage: React.FC = () => {
     return (
-        <div className={styles.wrapper}>
-            <div className={styles.container}  style={{ width: '20%' }}>
-                <img className={styles.InfoAvatar} src="https://www.citypng.com/public/uploads/preview/-51614559661pdiz2gx0zn.png" alt="Avatar"/>
-                <Typography variant="h4">BD3</Typography>
-                <div onClick={() => setSelectedMenu('Profile')}>Profile</div>
-                <div onClick={() => setSelectedMenu('Partnership')}>Partnership</div>
-                <div onClick={() => setSelectedMenu('Activities')}>Activities</div>
-
-            </div>
-            <div style={{ width: '80%', padding: '20px' }}>
-                {selectedMenu === 'Profile' && <ProfilePanel
+        <Grid className={`p-4`} container spacing={3}>
+            <Grid item xs={7} className={styles.LeftContainer}>
+                <ProfilePanel
                     title={'Profile'}
-                    isEditable={true}
+                    isEditable={false}
                     chips={['DAO', 'Web3']}
                     projectName={'BD3'}
                     address={'0x111'}
@@ -33,13 +25,18 @@ const InfoPage: React.FC = () => {
                     twitterName={'BD3'}
                     projectDescription={'Find your fucking partner'}
                     videoTitle={'Show time'}
-                    videoContent={'https://www.youtube.com/watch?v=gAjVmfQcffY'}
-                    partnerImpression={'partner impression'} />}
-                {selectedMenu === 'Partnership' && <Partnership partnerNum={100} partners={partnersData} />}
-                {selectedMenu === 'Activities' && <NeedsPanel needs={needs} currentPage={'info'}/>}
-            </div>
-        </div>
+                    videoContent={'https://media.w3.org/2010/05/sintel/trailer.mp4'}
+                    partnerImpression={'partner impression'}
+                    path={'info'}
+                />
+                <Partnership partnerNum={100} partners={partnersData} />
+            </Grid>
+            <Grid item xs={5} className={styles.LeftContainer}>
+                <NeedsPanel needs={needs} currentPage={'profile'}/>
+                <ReputationPanel reputationData={Reputation} />
+            </Grid>
+        </Grid>
     );
-};
+}
 
-export default InfoPage;
+export default ProfilePage;

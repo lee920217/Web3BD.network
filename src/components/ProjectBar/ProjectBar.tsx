@@ -69,7 +69,7 @@ const ProjectBar: React.FC = () => {
                 open={Boolean(anchorEl)}
                 onClose={handleCloseMenu}
             >
-                {(['Item1', 'Item2', 'Item3'] as CheckboxItem[]).map(item => (
+                {(['WIP', 'DAO', 'Layer2', 'Security'] as CheckboxItem[]).map(item => (
                     <MenuItem key={item}>
                         <Checkbox
                             checked={checkedItems.includes(item)}

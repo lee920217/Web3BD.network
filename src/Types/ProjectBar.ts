@@ -1,4 +1,4 @@
-export type CheckboxItem = 'Item1' | 'Item2' | 'Item3';
+export type CheckboxItem = string
 
 export type CheckedItems = CheckboxItem[];
 

@@ -1,9 +1,31 @@
 import React from 'react';
 import { Typography, Divider, Chip, Avatar, Box } from '@mui/material';
 import { Partner, PartnershipProps } from "@/Types/Partner";
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import AlignHorizontalRightIcon from '@mui/icons-material/AlignHorizontalRight';
+import ApiIcon from '@mui/icons-material/Api';
+import GridViewIcon from '@mui/icons-material/GridView';
+import GroupWorkRoundedIcon from '@mui/icons-material/GroupWorkRounded';
+import WorkspacesRoundedIcon from '@mui/icons-material/WorkspacesRounded';
 import styles from './index.module.scss'
 
 const Partnership: React.FC<PartnershipProps> = ({ partnerNum, partners }) => {
+    const getIconForChip = (chip: string) => {
+        switch (chip.toLowerCase()) {
+            case 'wip':
+                return <GroupWorkRoundedIcon />;
+            case 'layer2':
+                return <GridViewIcon />;
+            case 'dao':
+                return <GroupWorkRoundedIcon />;
+            case 'social-fi':
+                return <AlignHorizontalRightIcon />;
+            case 'public goods':
+                return <AccountBalanceIcon />;
+            default:
+                return <WorkspacesRoundedIcon />;
+        }
+    };
     return (
         <div className={styles.partnerContainer}>
             <Typography variant="h4">Partnership</Typography>
@@ -17,7 +39,14 @@ const Partnership: React.FC<PartnershipProps> = ({ partnerNum, partners }) => {
                             <Typography variant="body1">{partner.name}</Typography>
                             <div>
                                 {partner.chips.map((chip, chipIndex) => (
-                                    <Chip size="small"  key={chipIndex} label={chip} variant="outlined" style={{ marginRight: '8px' }} />
+                                    <Chip
+                                        size="small"
+                                        key={chipIndex}
+                                        label={chip}
+                                        variant="outlined"
+                                        style={{ marginRight: '8px' }}
+                                        icon={getIconForChip(chip)}  // Add this line
+                                    />
                                 ))}
                             </div>
                         </div>

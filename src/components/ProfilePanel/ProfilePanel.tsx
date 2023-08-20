@@ -1,7 +1,11 @@
 // components/Profile.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Divider, Typography, Chip, IconButton, TextField} from '@mui/material';
 import { Edit } from '@mui/icons-material';
+import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import WalletIcon from '@mui/icons-material/Wallet';
+import { useLocation } from 'react-router-dom';
 import styles from './index.module.scss'
 
 type ProfileProps = {
@@ -16,6 +20,7 @@ type ProfileProps = {
     videoTitle: string;
     videoContent: string; // 这可以是一个视频URL或其他内容
     partnerImpression: string;
+    path: string;
 };
 
 const ProfilePanel: React.FC<ProfileProps> = ({
@@ -30,6 +35,7 @@ const ProfilePanel: React.FC<ProfileProps> = ({
      videoTitle,
      videoContent,
      partnerImpression,
+    path
  }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [currentData, setCurrentData] = useState({
@@ -64,6 +70,12 @@ const ProfilePanel: React.FC<ProfileProps> = ({
             setNewChip('');
         }
     };
+
+    useEffect(() => {
+        if (path === 'profile') {
+           setIsEditing(false)
+        }
+    }, [])
 
     return (
         <div className={styles.profilePanelContainer}>
@@ -133,7 +145,7 @@ const ProfilePanel: React.FC<ProfileProps> = ({
                         fullWidth
                         InputProps={{ disableUnderline: true }}
                     />
-                    {/*<>video content</>*/}
+                    <video src={'https://assets.mixkit.co/videos/preview/mixkit-a-young-influencer-rides-a-giant-rubber-duck-in-a-50475-large.mp4'}></video>
                     <div>
                         <Button>Confirm</Button>
                         <Button>Cancel</Button>
@@ -147,9 +159,20 @@ const ProfilePanel: React.FC<ProfileProps> = ({
                             <Chip className={styles.chips} key={index} label={chip} variant="outlined" />
                         ))}
                     </div>
-                    <Typography variant="h6">{currentData.address}</Typography>
-                    <Typography>{currentData.websiteURL}</Typography>
-                    <Typography>{currentData.twitterName}</Typography>
+                    <div className="flex items-center gap-2">
+                        <WalletIcon />
+                        <Typography variant="body2">{currentData.address}</Typography>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <LanguageRoundedIcon />
+                        <Typography>{currentData.websiteURL}</Typography>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <TwitterIcon />
+                        <Typography>{currentData.twitterName}</Typography>
+                    </div>
                     <Typography>{currentData.projectDescription}</Typography>
                     <Divider />
                     <Typography variant="h6">{currentData.videoTitle}</Typography>

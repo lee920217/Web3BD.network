@@ -67,7 +67,7 @@ const NeedsPanel: React.FC<NeedsProps> = ({ needs, currentPage }) => {
                             <Typography variant={'body1'}>Wallet Address: xxxx</Typography>
                             <Typography variant={'body1'}>Intro: xxxx</Typography>
                             <Typography variant={'h5'}>BO3's Video</Typography>
-                            <video src={'https://www.youtube.com/watch?v=gAjVmfQcffY'}></video>
+                            <video src={'https://media.w3.org/2010/05/sintel/trailer.mp4'}></video>
 
 
 

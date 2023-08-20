@@ -1,5 +1,18 @@
-.LeftContainer {
+.wrapper {
+  padding: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  .InfoAvatar {
+    width: 70px;
+    height: 70px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .menuButton {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

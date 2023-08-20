@@ -1,7 +1,7 @@
 // lib/axios.js
 import axios from 'axios';
 
-const aron = 'http://192.168.74.104:8080/';
+const aron = 'http://172.16.0.245:8080/';
 const kj = 'https://api.web3bd.network/ ';
 
 const aronInstance = axios.create({

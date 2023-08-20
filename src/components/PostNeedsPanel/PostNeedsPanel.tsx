@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, SyntheticEvent } from 'react';
 import { ArrowDropDown, ArrowDropUp } from '@mui/icons-material';
 import {
     Box,
@@ -11,7 +11,7 @@ import {
     OutlinedInput,
     Input,
     Divider,
-    TextField, Avatar
+    TextField, Avatar, Snackbar, Alert
 } from '@mui/material';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Dayjs } from 'dayjs';
@@ -22,10 +22,12 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import {aronInstance, kjInstance} from "@/lib/axios";
 import {AxiosResponse, AronApiResponse, AronDataArray } from '@/Types/aronInterface'
-
+import { SnackbarCloseReason } from '@mui/material/Snackbar';
+import { Skeleton } from '@mui/material';
+import Link from "next/link";
+import {useWallet} from "@/contexts/WalletContext";
 import styles from './index.module.scss';
 import './date.scss'
-import Link from "next/link";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -49,35 +51,37 @@ const PostNeedsPanel: React.FC = () => {
     const [value, setValue] = React.useState<Dayjs | null>(null);
     const [dataFromAron, setDataFromAron] = useState<AronDataArray>([]);
     const [dataFromKj, setDataFromKj] = useState(null);
+    const [errorOpen, setErrorOpen] = useState<boolean>(false);
+    const [desc, setDesc] = useState("")
+    const [matchRlt, setMatchResult] = useState(false)
+    const { walletAddress } = useWallet()
 
     const handleChange = (event: SelectChangeEvent<string[]>) => {
         setCrypto(event.target.value as string[]);
     };
 
-    useEffect(() => {
-        // Fetch data from Aron's API
-        const fetchDataFromAron = async () => {
-            try {
-                const response = await aronInstance.get<AronApiResponse>('/recommend/list?item=DID');
-                setDataFromAron(response.data.data);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
+    const handleClose = (event: SyntheticEvent | Event, reason: SnackbarCloseReason) => {
+        if (reason === 'clickaway') {
+            return;
         }
+        setErrorOpen(false);
+    };
 
-        // Fetch data from Kj's API
-        // const fetchDataFromKj = async () => {
-        //     try {
-        //         const response = await kjInstance.get('/another-endpoint');
-        //         setDataFromKj(response.data);
-        //     } catch (error) {
-        //         console.error('Error fetching data from Kj:', error);
-        //     }
-        // }
 
-        fetchDataFromAron();
-        // fetchDataFromKj();
-    }, []);
+    const fetchDataFromAron = async () => {
+
+        if(!desc || !walletAddress) {
+            setErrorOpen(true)
+            return
+        }
+        try {
+            const response = await aronInstance.get<AronApiResponse>(`/recommend/list?item=${desc}&walletAddress=${walletAddress}`);
+            setDataFromAron(response.data.data);
+            setMatchResult(true)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
 
 
 
@@ -86,6 +90,15 @@ const PostNeedsPanel: React.FC = () => {
             <Box
                 className={styles.collapsePanel}
             >
+                <Snackbar
+                    open={errorOpen}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
+                    <Alert severity="error" variant="filled">
+                        Miss message
+                    </Alert>
+                </Snackbar>
                 <div className={styles.titleContainer} onClick={() => setIsExpanded(!isExpanded)}>
                     {isExpanded ? <ArrowDropUp /> : <ArrowDropDown />}
                     One-click BD
@@ -143,8 +156,16 @@ const PostNeedsPanel: React.FC = () => {
                                 />
                             </div>
                             <Typography variant="overline">
-                                Please input your offer except fund
+                                Please introduce your project
                             </Typography>
+                            <TextField
+                                label="项目介绍"
+                                variant="outlined"
+                                fullWidth
+                                placeholder="Introduce your project"
+                                value={desc}
+                                onChange={(e) => setDesc(e.target.value)}
+                            />
                             <Divider />
                             <p className={styles.bolderFont}>
                                 Expiration time <span>(optional)</span>
@@ -168,30 +189,46 @@ const PostNeedsPanel: React.FC = () => {
                                     label="Minutes"
                                     value={minutes}
                                     onChange={(e) => setMinutes(e.target.value)}
-                                    InputProps={{ endAdornment: <span>时</span> }} // 添加单位
+                                    InputProps={{ endAdornment: <span>分</span> }} // 添加单位
                                     inputProps={{ min: "0", max: "60", step: "1" }}
                                 />
                             </Box>
-
                         </div>
-                        <Button className={styles.PostNeedsButton}>
+                        <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton}>
                             GO to BD by one-click!
                         </Button>
-                        <div className={styles.SuggestionContainer}>
-                            <Typography variant="h6" gutterBottom>
-                                BD Offer
-                            </Typography>
-                            <RefreshIcon className={styles.refreshBtn}/>
-                            <div className={styles.suggestionList}>
-                                {dataFromAron.map(item => (
-                                    <div key={item.walletAddress} className={styles.Item}>
-                                        <Link href={`/${item.walletAddress}`}>
-                                            <Avatar src={item.avatar} />
-                                        </Link>
+                        {
+                            matchRlt && (
+                                <>
+                                    <div className={styles.SuggestionContainer}>
+                                        <Typography variant="h6" gutterBottom>
+                                            BD Offer
+                                        </Typography>
+                                        <RefreshIcon className={styles.refreshBtn}/>
+                                        <div className={styles.suggestionList}>
+                                            {dataFromAron.length === 0 ? (
+                                                // Display skeleton screen if data is not loaded
+                                                Array.from(new Array(4)).map((_, index) => (
+                                                    <Skeleton key={index} variant="circular" width={40} height={40} />
+                                                ))
+                                            ) : (
+                                                // Display actual avatars once data is loaded
+                                                dataFromAron.map(item => (
+                                                    <div key={item.walletAddress} className={styles.Item}>
+                                                        <Link href={`/${item.walletAddress}`}>
+                                                            <Avatar src={item.avatar} />
+                                                        </Link>
+                                                    </div>
+                                                ))
+                                            )}
+                                        </div>
                                     </div>
-                                ))}
-                            </div>
-                        </div>
+                                    <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton}>
+                                        GO to BD by one-click!
+                                    </Button>
+                                </>
+                            )
+                        }
                     </>
                 )}
             </Box>

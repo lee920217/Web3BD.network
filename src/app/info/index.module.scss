@@ -1,13 +1,5 @@
-.wrapper {
-  padding: 16px;
+.LeftContainer {
   display: flex;
-  .InfoAvatar {
-    width: 70px;
-    height: 70px;
-  }
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+  flex-direction: column;
+  gap: 20px;
 }
