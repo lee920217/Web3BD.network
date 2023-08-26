@@ -5,8 +5,11 @@ import { Edit } from '@mui/icons-material';
 import LanguageRoundedIcon from '@mui/icons-material/LanguageRounded';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import WalletIcon from '@mui/icons-material/Wallet';
-import { useLocation } from 'react-router-dom';
+import { kj, getRequest } from '@/lib/api';
 import styles from './index.module.scss'
+import { useWallet } from "@/contexts/WalletContext";
+
+
 
 type ProfileProps = {
     title: string;
@@ -52,6 +55,7 @@ const ProfilePanel: React.FC<ProfileProps> = ({
         partnerImpression,
     });
     const [newChip, setNewChip] = useState('');
+    const { walletAddress } = useWallet()
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -72,6 +76,22 @@ const ProfilePanel: React.FC<ProfileProps> = ({
     };
 
     useEffect(() => {
+
+        const fetchProfileData = async () => {
+            const response = await fetch(`https://api.web3bd.network/api/profile?addr=${walletAddress}`)
+            const data = await response.json();
+            // setProfileData(data);
+        };
+
+        if (!walletAddress) {
+            return
+        } else {
+            fetchProfileData();
+        }
+
+    }, [walletAddress])
+
+    useEffect(() => {
         if (path === 'profile') {
            setIsEditing(false)
         }
@@ -79,14 +99,15 @@ const ProfilePanel: React.FC<ProfileProps> = ({
 
     return (
         <div className={styles.profilePanelContainer}>
-            <Typography variant="h4">
-                {title}
+            <div className={styles.ProfileHeaderItem}>
+                <Typography variant="h4" color="text.secondary">
+                    {title}
+                </Typography>
                 {isEditable && (
-                    <IconButton onClick={() => {setIsEditing(true)}}>
-                        <Edit />
-                    </IconButton>
+
+                    <Button onClick={() => {setIsEditing(true)}} color="primary" variant="outlined" size="small"> Edit</Button>
                 )}
-            </Typography>
+            </div>
             <Divider />
             {isEditing ? (
                 <>
@@ -132,6 +153,7 @@ const ProfilePanel: React.FC<ProfileProps> = ({
                         value={currentData.projectDescription}
                         name={'projectDescriptions'}
                         onChange={handleInputChange}
+                        multiline
                         variant="standard"
                         fullWidth
                         InputProps={{ disableUnderline: true }}
@@ -145,42 +167,42 @@ const ProfilePanel: React.FC<ProfileProps> = ({
                         fullWidth
                         InputProps={{ disableUnderline: true }}
                     />
-                    <video src={'https://assets.mixkit.co/videos/preview/mixkit-a-young-influencer-rides-a-giant-rubber-duck-in-a-50475-large.mp4'}></video>
-                    <div>
-                        <Button>Confirm</Button>
-                        <Button>Cancel</Button>
+                    {/*<video src={'https://assets.mixkit.co/videos/preview/mixkit-a-young-influencer-rides-a-giant-rubber-duck-in-a-50475-large.mp4'}></video>*/}
+                    <div className={styles.ButtonContainer}>
+                        <Button variant="outlined" color="primary">Confirm</Button>
+                        <Button variant="contained" color="primary">Cancel</Button>
                     </div>
                 </>
             ) : (
                 <>
-                    <Typography variant="h6">{currentData.projectName}</Typography>
+                    <Typography color="text.secondary" variant="h6">{currentData.projectName}</Typography>
                     <div>
                         {currentData.chips.map((chip, index) => (
                             <Chip className={styles.chips} key={index} label={chip} variant="outlined" />
                         ))}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className={styles.ProfileDetailItem}>
                         <WalletIcon />
-                        <Typography variant="body2">{currentData.address}</Typography>
+                        <Typography color="text.secondary" variant="body2">{currentData.address}</Typography>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className={styles.ProfileDetailItem}>
                         <LanguageRoundedIcon />
-                        <Typography>{currentData.websiteURL}</Typography>
+                        <Typography color="text.secondary">{currentData.websiteURL}</Typography>
                     </div>
 
-                    <div className="flex items-center gap-2">
+                    <div className={styles.ProfileDetailItem}>
                         <TwitterIcon />
-                        <Typography>{currentData.twitterName}</Typography>
+                        <Typography color="text.secondary">{currentData.twitterName}</Typography>
                     </div>
-                    <Typography>{currentData.projectDescription}</Typography>
+                    <Typography color="text.secondary">{currentData.projectDescription}</Typography>
                     <Divider />
-                    <Typography variant="h6">{currentData.videoTitle}</Typography>
+                    <Typography color="text.secondary" variant="h6">{currentData.videoTitle}</Typography>
                     <video src={currentData.videoContent}></video> {/* 这里可以根据需要替换为视频组件 */}
                 </>
             )}
             <Divider />
-            <Typography variant="h6">{currentData.partnerImpression}</Typography>
+            <Typography color="text.secondary" variant="h6">{currentData.partnerImpression}</Typography>
             <div>
                 {currentData.chips.map((chip, index) => (
                     <Chip className={styles.chips} key={index} label={chip} variant="outlined" />

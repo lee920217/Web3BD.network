@@ -19,6 +19,21 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
     const [walletAddress, setWalletAddress] = useState<string | null>(null);
     const [network, setNetwork] = useState<string | null>(null);
 
+    // 从 localStorage 获取 walletAddress
+    useEffect(() => {
+        const savedWalletAddress = localStorage.getItem('walletAddress');
+        if (savedWalletAddress) {
+            setWalletAddress(savedWalletAddress);
+        }
+    }, []);
+
+    // 监听 walletAddress 的变化并保存到 localStorage
+    useEffect(() => {
+        if (walletAddress) {
+            localStorage.setItem('walletAddress', walletAddress);
+        }
+    }, [walletAddress]);
+
     useEffect(() => {
         if (typeof window.ethereum !== 'undefined') {
             // 监听账户变化
@@ -40,13 +55,13 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({ children }) => {
         };
     }, []);
 
-
     return (
         <WalletContext.Provider value={{ walletAddress, setWalletAddress, network, setNetwork }}>
             {children}
         </WalletContext.Provider>
     );
 };
+
 
 export const useWallet = () => {
     const context = useContext(WalletContext);

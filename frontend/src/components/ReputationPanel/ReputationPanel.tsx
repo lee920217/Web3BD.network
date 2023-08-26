@@ -35,19 +35,19 @@ const Reputation: React.FC<ReputationProps> = ({ reputationData }) => {
 
     return (
         <div className={styles.reputationContainer}>
-            <Typography variant="h4">Reputation</Typography>
+            <Typography variant="h4" color="text.secondary">Reputation</Typography>
             <Divider />
             {reputationData.map((item, index) => (
                 <>
                     <Box className={styles.reputationItem} key={index} display="flex" alignItems="center" marginY={2} onClick={() => handleOpen(item.comments)}>
                         <Avatar src={item.avatar} alt={item.projectName} style={{ marginRight: '16px' }} />
                         <div className={styles.reputationItemTitle}>
-                            <Typography variant="body1">{item.projectName}</Typography>
-                            <div className={`flex items-center`}>
+                            <Typography variant="body1" color="text.secondary">{item.projectName}</Typography>
+                            <div className={styles.ReputationChips}>
                                 {item.chips.map((chip, chipIndex) => (
                                     <Chip size="small" key={chipIndex} label={chip} variant="outlined" style={{ marginRight: '8px' }} />
                                 ))}
-                                <Typography variant="body2">{item.comments}</Typography>
+                                <Typography variant="body2" color="text.secondary">{item.comments}</Typography>
                             </div>
                         </div>
                     </Box>

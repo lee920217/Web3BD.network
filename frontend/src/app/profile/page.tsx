@@ -8,28 +8,30 @@ import partnersData from "@/data/partner";
 import Partnership from "@/components/PartnerPanel/PartnerPanel";
 import needs from "@/data/needs";
 import NeedsPanel from "@/components/NeedsPanel/NeedsPanel";
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const InfoPage: React.FC = () => {
-    const [selectedMenu, setSelectedMenu] = useState<string>('Profile');
+    const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
+
+    const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+        setSelectedTabIndex(newValue);
+    };
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.container}  style={{ width: '20%' }}>
+            <div className={styles.container}>
                 <img className={styles.InfoAvatar} src="https://bafkreidikblyoq2ygzrlc24hql3swlruicc5o6nj7ce4n2hizgleocjjau.ipfs.nftstorage.link/" alt="Avatar"/>
-                <Typography variant="h4">BD3</Typography>
-                <div className={styles.menuButton} onClick={() => setSelectedMenu('Profile')} style={{ fontWeight: selectedMenu === 'Profile' ? 'bold' : 'normal' }}>
-                    Profile
-                </div>
-                <div className={styles.menuButton} onClick={() => setSelectedMenu('Partnership')} style={{ fontWeight: selectedMenu === 'Partnership' ? 'bold' : 'normal' }}>
-                    Partnership
-                </div>
-                <div className={styles.menuButton} onClick={() => setSelectedMenu('Activities')} style={{ fontWeight: selectedMenu === 'Activities' ? 'bold' : 'normal' }}>
-                    Activities
-                </div>
+                <Typography variant="h4" color="text.secondary">BD3</Typography>
 
+                <Tabs value={selectedTabIndex} onChange={handleTabChange} orientation="horizontal" variant="scrollable">
+                    <Tab label="Profile" />
+                    <Tab label="Partnership" />
+                    <Tab label="Activities" />
+                </Tabs>
             </div>
-            <div style={{ width: '80%', padding: '20px' }}>
-                {selectedMenu === 'Profile' && <ProfilePanel
+            <div>
+                {selectedTabIndex === 0 && <ProfilePanel
                     title={'Img3'}
                     isEditable={true}
                     chips={['WIP', 'NFT']}
@@ -43,8 +45,8 @@ const InfoPage: React.FC = () => {
                     partnerImpression={'partner impression'}
                     path={'profile'}
                 />}
-                {selectedMenu === 'Partnership' && <Partnership partnerNum={100} partners={partnersData} />}
-                {selectedMenu === 'Activities' && <NeedsPanel needs={needs} currentPage={'info'}/>}
+                {selectedTabIndex === 1 && <Partnership partnerNum={100} partners={partnersData} />}
+                {selectedTabIndex === 2 && <NeedsPanel needs={needs} currentPage={'info'}/>}
             </div>
         </div>
     );

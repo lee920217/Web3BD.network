@@ -20,7 +20,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import {aronInstance, kjInstance} from "@/lib/axios";
+// import {aronInstance, kjInstance} from "@/lib/api";
 import {AxiosResponse, AronApiResponse, AronDataArray } from '@/Types/aronInterface'
 import { SnackbarCloseReason } from '@mui/material/Snackbar';
 import { Skeleton } from '@mui/material';
@@ -70,17 +70,17 @@ const PostNeedsPanel: React.FC = () => {
 
     const fetchDataFromAron = async () => {
 
-        if(!desc || !walletAddress) {
-            setErrorOpen(true)
-            return
-        }
-        try {
-            const response = await aronInstance.get<AronApiResponse>(`/recommend/list?item=${desc}&walletAddress=${walletAddress}`);
-            setDataFromAron(response.data.data);
-            setMatchResult(true)
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
+        // if(!desc || !walletAddress) {
+        //     setErrorOpen(true)
+        //     return
+        // }
+        // try {
+        //     const response = await aronInstance.get<AronApiResponse>(`/recommend/list?item=${desc}&walletAddress=${walletAddress}`);
+        //     setDataFromAron(response.data.data);
+        //     setMatchResult(true)
+        // } catch (error) {
+        //     console.error('Error fetching data:', error);
+        // }
 
         setMatchResult(true)
     }
@@ -108,19 +108,19 @@ const PostNeedsPanel: React.FC = () => {
 
                 {isExpanded && (
                     <>
-                        <Typography variant="body2" gutterBottom>
+                        <Typography variant="body2" color="text.secondary" gutterBottom>
                             We will recommend some Projects to you by your tag, profile, Need.
                         </Typography>
                         <div className={styles.requirementsContainer}>
-                            <Typography variant="h6" gutterBottom>
+                            <Typography variant="h6" color="text.secondary" gutterBottom>
                                 BD Requirements
                             </Typography>
-                            <Typography variant="overline">
+                            <Typography variant="overline" color="text.secondary">
                                 Send your information card to those projects who can post  your information card on X(twitter).
                             </Typography>
                         </div>
                         <div className={styles.requirementsContainer}>
-                            <Typography variant="h6" gutterBottom>
+                            <Typography variant="h6" color="text.secondary" gutterBottom>
                                 BD Offer
                             </Typography>
                             <div className={styles.cryptoChangeContainer}>
@@ -196,7 +196,7 @@ const PostNeedsPanel: React.FC = () => {
                                 />
                             </Box>
                         </div>
-                        <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton}>
+                        <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton} variant="contained" color="primary">
                             GO to BD by one-click!
                         </Button>
                         {
@@ -225,7 +225,7 @@ const PostNeedsPanel: React.FC = () => {
                                             )}
                                         </div>
                                     </div>
-                                    <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton}>
+                                    <Button onClick={fetchDataFromAron} className={styles.PostNeedsButton}  variant="contained" color="primary">
                                         GO to BD by one-click!
                                     </Button>
                                 </>
@@ -329,7 +329,7 @@ const PostNeedsPanel: React.FC = () => {
                             </Box>
 
                         </div>
-                        <Button className={styles.PostNeedsButton}>
+                        <Button className={styles.PostNeedsButton}  variant="contained" color="primary">
                             Post
                         </Button>
                     </>

@@ -17,23 +17,6 @@ import WorkspacesRoundedIcon from "@mui/icons-material/WorkspacesRounded";
 
 const MediaCard:React.FC<MediaCardProps> = ({ image, title, chips, type, network, twitterName,  heading, description }) => {
 
-    const getIconForChip = (chip: string) => {
-        switch (chip.toLowerCase()) {
-            case 'wip':
-                return <GroupWorkRoundedIcon />;
-            case 'layer2':
-                return <GridViewIcon />;
-            case 'dao':
-                return <GroupWorkRoundedIcon />;
-            case 'social-fi':
-                return <AlignHorizontalRightIcon />;
-            case 'public goods':
-                return <AccountBalanceIcon />;
-            default:
-                return <WorkspacesRoundedIcon />;
-        }
-    };
-
     return (
         <Link href={'/info'}>
             <Card className={styles.MediaCardItem} sx={{ maxWidth: 345 }}>
@@ -43,30 +26,18 @@ const MediaCard:React.FC<MediaCardProps> = ({ image, title, chips, type, network
                     title={title}
                 />
                 <CardContent className={styles.CardContentContainer}>
-                    {/*<Typography gutterBottom variant="h5" component="div">*/}
-                    {/*    {heading}*/}
-                    {/*</Typography>*/}
                     <div>
                         {chips.map((chipData, index) => (
                             <Chip
+                                color="primary"
                                 size="small"
                                 key={index}
                                 label={chipData}
                                 variant="outlined"
-                                style={{ marginRight: '8px' }}
-                                icon={getIconForChip(chipData)}  // Add this line
+                                style={{ marginRight: '8px' }}// Add this line
                             />
                         ))}
                     </div>
-                    {/*<Typography gutterBottom variant="body1" component="div">*/}
-                    {/*    {type}*/}
-                    {/*</Typography>*/}
-                    {/*<Typography gutterBottom variant="body1" component="div">*/}
-                    {/*    {network}*/}
-                    {/*</Typography>*/}
-                    {/*<Typography gutterBottom variant="body1" component="div">*/}
-                    {/*    {twitterName}*/}
-                    {/*</Typography>*/}
                     <Typography variant="body2" color="text.secondary" style={{
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',

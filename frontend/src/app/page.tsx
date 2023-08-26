@@ -1,5 +1,5 @@
 import CardsList from "@/components/ProjectCard/ProjectCard";
-import mediaCardData from "@/data/mediaCrad";
+import mediaCardData from "@/data/mediaCard";
 import ProjectBar from "@/components/ProjectBar/ProjectBar";
 
 export default function Home() {

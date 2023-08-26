@@ -9,10 +9,23 @@
 }
 
 .PostProjectButton {
-  background-color: #000000 !important;
+  // background-color: #000000 !important;
 }
 
 .connectBtn {
   border: 1px solid #000;
   border-radius: 4px;
+}
+
+.LoginedWrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+.HeaderWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
 }

@@ -4,12 +4,10 @@ import React from 'react';
 import { useWallet } from '@/contexts/WalletContext';
 import Link from 'next/link';
 import {Button, IconButton, ListItemIcon, Menu, MenuItem} from '@mui/material';
-import { Mail as MailIcon, MoreVert as MoreVertIcon } from '@mui/icons-material';
-import InputIcon from '@mui/icons-material/Input';
+import { Mail as MailIcon, MoreVert as MoreVertIcon } from '@mui/icons-material'
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import Person from '@mui/icons-material/Person';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import WalletIcon from '@mui/icons-material/Wallet';
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 
 import styles from './index.module.scss'
@@ -51,48 +49,44 @@ export default function Header() {
     };
 
     return (
-        <header className="flex justify-between items-center p-4">
+        <header className={styles.HeaderWrapper}>
             <Link legacyBehavior href="/">
                 <p className={styles.logoText}>
 
                 </p>
             </Link>
             {!walletAddress && (
-                <Button className={styles.connectBtn} color="primary" onClick={handleConnectWallet}>
+                <Button variant="contained" className={styles.connectBtn} color="primary" onClick={handleConnectWallet}>
                     Connect Wallet
                 </Button>
             )}
             {walletAddress && (
-                <div className="flex items-center" style={{gap: 20}}>
-                    <Link href={'/postneeds'}>
-                        <Button className={styles.PostProjectButton} variant="contained">
-                            Post Project
-                        </Button>
-                    </Link>
+                <div className={styles.LoginedWrapper} >
+                            <Link href={'/postneeds'}>
+                                <Button color="primary" variant="contained" className={styles.PostProjectButton}>
+                                    Post Project
+                                </Button>
+                            </Link>
 
-                    <IconButton onClick={handleClick}>
-                        <Brightness1Icon />
-                    </IconButton>
+
+                    <Button color="primary" variant="outlined" onClick={handleClick}>
+                        {`${walletAddress.substr(0, 4)}****${walletAddress.substr(walletAddress.length - 4, walletAddress.length - 1)}`}
+                    </Button>
 
                     <Menu
                         anchorEl={anchorEl}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>
-                            <ListItemIcon>
-                                <AccountCircle />
-                            </ListItemIcon>
-                            {`${walletAddress.substr(0, 8)}****${walletAddress.substr(walletAddress.length - 8, walletAddress.length - 1)}`}
-                        </MenuItem>
-                        <Link href={'/profile'}>
                             <MenuItem onClick={handleClose}>
                                 <ListItemIcon>
                                     <Person />
                                 </ListItemIcon>
-                                Profile
+                                <Button color='primary' href="/profile" component={Link}>
+                                    Home
+                                </Button>
                             </MenuItem>
-                        </Link>
+
                         <MenuItem onClick={disconnect}>
                             <ListItemIcon>
                                 <ExitToAppIcon />

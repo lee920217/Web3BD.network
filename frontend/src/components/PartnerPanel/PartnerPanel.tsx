@@ -28,15 +28,15 @@ const Partnership: React.FC<PartnershipProps> = ({ partnerNum, partners }) => {
     };
     return (
         <div className={styles.partnerContainer}>
-            <Typography variant="h4">Partnership</Typography>
+            <Typography variant="h4" color="text.secondary">Partnership</Typography>
             <Divider />
-            <Typography variant="h6">Partner num: {partnerNum}</Typography>
+            <Typography variant="h6" color="text.secondary">Partner num: {partnerNum}</Typography>
             <div className={styles.partnerItemContainer}>
                 {partners.map((partner, index) => (
                     <Box className={styles.partnerItem} key={index} display="flex" alignItems="center" marginY={2}>
                         <Avatar src={partner.avatar} alt={partner.name} style={{ marginRight: '16px' }} />
                         <div>
-                            <Typography variant="body1">{partner.name}</Typography>
+                            <Typography variant="body1" color="text.secondary">{partner.name}</Typography>
                             <div>
                                 {partner.chips.map((chip, chipIndex) => (
                                     <Chip

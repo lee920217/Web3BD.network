@@ -8,12 +8,15 @@
   border-radius: 12px;
   padding: 16px;
   gap: 20px;
+  color: #f2f2f2;
   margin-bottom: 16px;
   .titleContainer {
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    align-items: center;
     gap: 20px;
+    color: #f2f2f2;
     &:hover {
       cursor: pointer;
     }
@@ -21,9 +24,9 @@
   .requirementsContainer {
     width: 100%;
     padding: 16px;
-    border: 1px solid #000;
+    border: 1px solid #6f6767;
     border-radius: 12px;
-    background-color: #F5F5F5;
+    box-sizing: border-box;
     .cryptoChangeContainer {
       display: flex;
       align-items: center;
@@ -50,7 +53,6 @@
     width: 100%;
     padding: 16px 0;
     border-radius: 12px;
-    background: #E3E3E3;
   }
 }
 

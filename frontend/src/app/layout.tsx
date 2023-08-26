@@ -1,10 +1,10 @@
-import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Header from "@/components/CommonHeader/CommonHeader";
 import { WalletProvider } from "@/contexts/WalletContext";
 import { ThemeProvider } from '@mui/material/styles'
 import theme from '../theme/theme';
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 

@@ -31,20 +31,20 @@ const NeedsPanel: React.FC<NeedsProps> = ({ needs, currentPage }) => {
 
     return (
         <div className={styles.needsContainer}>
-            <Typography variant="h4">Needs</Typography>
+            <Typography variant="h4" color="text.secondary">Needs</Typography>
             <Divider />
             {needs.map((need, index) => (
                 <>
                     <Box key={need.time} className={styles.needsItem} display="flex" alignItems="center" marginY={2}>
-                        <div className={`flex`}>
+                        <div className={styles.ItemHeader}>
                             <Avatar src={need.avatar} alt={need.name} style={{ marginRight: '16px' }} />
                             <div className={styles.needsItemText}>
-                                <Typography className={styles.needsItemTitle} variant="body1">
+                                <Typography className={styles.needsItemTitle} variant="body1" color="text.secondary" >
                                     {need.name}
                                     <span className={`${styles[need.status]}`}></span>
                                     {need.status}
                                 </Typography>
-                                <Typography variant="body2">
+                                <Typography variant="body2" color="text.secondary">
                                     {need.time}
                                     <Chip size="small" label={need.chip} variant="outlined" style={{ marginLeft: '8px' }} />
                                 </Typography>
@@ -54,19 +54,19 @@ const NeedsPanel: React.FC<NeedsProps> = ({ needs, currentPage }) => {
                     </Box>
                     {expandedIndex === index && currentPage === 'info' && (
                         <div className={styles.expandedContent}>
-                            <Typography variant={'body1'}>Details: xxxx</Typography>
-                            <Typography variant={'body1'}>Details: xxxx</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Details: xxxx</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Details: xxxx</Typography>
                             <Divider />
-                            <Typography variant={'h4'}>BO3</Typography>
+                            <Typography variant={'h4'} color="text.secondary">BO3</Typography>
                             <div>
                                 <Chip size="small" label="DAO" />
                             </div>
-                            <Typography variant={'body1'}>Website: xxxx</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Website: xxxx</Typography>
 
-                            <Typography variant={'body1'}>Twitter Name: xxxx</Typography>
-                            <Typography variant={'body1'}>Wallet Address: xxxx</Typography>
-                            <Typography variant={'body1'}>Intro: xxxx</Typography>
-                            <Typography variant={'h5'}>BO3's Video</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Twitter Name: xxxx</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Wallet Address: xxxx</Typography>
+                            <Typography variant={'body1'} color="text.secondary">Intro: xxxx</Typography>
+                            <Typography variant={'h5'} color="text.secondary">BO3's Video</Typography>
                             <video src={'https://media.w3.org/2010/05/sintel/trailer.mp4'}></video>
 
 

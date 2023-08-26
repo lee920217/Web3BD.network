@@ -8,7 +8,7 @@ const mediaCardData: CardData[] = [
         type: "website",
         twitterName: "twitter",
         network: "zkSync",
-        chips: ["WIP", "PUBLIC GOODS", "OPEN SROUCE"],
+        chips: ["WIP", "PUBLIC GOODS"],
         description: "The Mirror.xyz is a vital writing infrastructure in Web3. But their writing experience still has much room to be improved"
     },
     {
